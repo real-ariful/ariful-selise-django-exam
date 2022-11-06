@@ -34,3 +34,7 @@ Solution 6: Add a function get_queryset to ListCreateMovieAPIView Class
         if not self.request._user.is_superuser:
             filtered['creator'] = self.request._auth['user_id']
         return queryset.filter(**filtered)`
+
+## BUG 7: Page Limit Issue
+
+Solution 7:  Replace `size_query_param` to `page_size_query_param`.

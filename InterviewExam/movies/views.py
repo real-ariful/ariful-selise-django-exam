@@ -9,7 +9,6 @@ from .filters import MovieFilter
 
 class ListCreateMovieAPIView(ListCreateAPIView):
     serializer_class = MovieSerializer
-    queryset = Movie.objects.all()
     pagination_class = CustomPagination
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = MovieFilter
@@ -28,7 +27,13 @@ class ListCreateMovieAPIView(ListCreateAPIView):
 
 class RetrieveUpdateDestroyMovieAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = MovieSerializer
-    queryset = Movie.objects.all()
+
+    def get_queryset(self):
+        queryset = Movie.objects.all()
+        filtered = {}
+        if not self.request._user.is_superuser:
+            filtered['creator'] = self.request._auth['user_id']
+        return queryset.filter(**filtered)
 
 
 
