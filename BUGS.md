@@ -23,3 +23,14 @@ Solution 4: Replace `permission_classes = (IsAdminUser,)` for RegisterView with 
 Solution 5: Remove `if attrs['password'] == attrs['password2']:
                         raise serializers.ValidationError({"password": "Password fields didn't match."})` from
                         valdiate function
+
+## BUG 6: All Users able to see all movies
+
+Solution 6: Add a function get_queryset to ListCreateMovieAPIView Class
+
+    `def get_queryset(self):
+        queryset = Movie.objects.all()
+        filtered = {}
+        if not self.request._user.is_superuser:
+            filtered['creator'] = self.request._auth['user_id']
+        return queryset.filter(**filtered)`

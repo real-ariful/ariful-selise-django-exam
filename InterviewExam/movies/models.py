@@ -13,3 +13,9 @@ class Movie(models.Model):
         ordering = ['-id']
 
 
+    def __str__(self):
+        return str(self.title)
+
+    
+
+
