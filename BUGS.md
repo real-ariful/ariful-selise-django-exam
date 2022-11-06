@@ -17,3 +17,9 @@ Solution 3: Replace `read_only` from password and password2 under RegisterSerial
 ## BUG 4: User can not be registered.  RegisterView access given for only Admin Users.
 
 Solution 4: Replace `permission_classes = (IsAdminUser,)` for RegisterView with `permission_classes = (AllowAny,)`.
+
+## BUG 5: Error in Password Validate
+
+Solution 5: Remove `if attrs['password'] == attrs['password2']:
+                        raise serializers.ValidationError({"password": "Password fields didn't match."})` from
+                        valdiate function
