@@ -7,7 +7,7 @@ Solution 1: Added `movies` inside the INSTALLED_APPS inside settings.py file.
 
 ## BUG 2: Unable to Access API `/api/v1/auth/register`
 
-Solution 2: Added `path('api/v1/auth/', include('authentication.urls'))` to the url_patterns list inside api_cud/url.py file
+Solution 2: Added `path('api/v1/auth/', include('authentication.urls'))` to the url_patterns list inside api_crud/url.py file
 
 
 ## BUG 3: AssertionError: May not set both `read_only` and `required` for password  and password2 under RegisterSerializer
@@ -26,7 +26,7 @@ Solution 5: Remove `if attrs['password'] == attrs['password2']:
 
 ## BUG 6: All Users able to see all movies
 
-Solution 6: Add a function get_queryset to ListCreateMovieAPIView Class
+Solution 6: Add a function `get_queryset` to `ListCreateMovieAPIView` Class
 
     `def get_queryset(self):
         queryset = Movie.objects.all()
