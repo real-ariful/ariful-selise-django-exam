@@ -16,4 +16,4 @@ Solution 3: Replace `read_only` from password and password2 under RegisterSerial
 
 ## BUG 4: User can not be registered.  RegisterView access given for only Admin Users.
 
-Solution 3: Replace `permission_classes = (IsAdminUser,)` for RegisterView with `permission_classes = (AllowAny,)`.
+Solution 4: Replace `permission_classes = (IsAdminUser,)` for RegisterView with `permission_classes = (AllowAny,)`.
